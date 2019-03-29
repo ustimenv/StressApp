@@ -18,7 +18,8 @@ public class FeelGoodRoutineEntry
 		checkBox = new CheckBox(context);
 		checkBox.setText(activityName);
 		
-		checkBox.setPaddingRelative(checkBox.getCompoundPaddingStart(), checkBox.getCompoundPaddingTop(), paddingCounter, paddingCounter);
+		checkBox.setPaddingRelative(checkBox.getCompoundPaddingStart(), checkBox.getCompoundPaddingTop(),
+				paddingCounter, paddingCounter);
 		checkBox.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view)
@@ -27,5 +28,11 @@ public class FeelGoodRoutineEntry
 						.setAction("Action", null).show();
 			}
 		});
+	}
+
+	protected void moveEntry(int paddingCounter)
+	{
+		checkBox.setPaddingRelative(checkBox.getCompoundPaddingStart(), checkBox.getCompoundPaddingTop(),
+				paddingCounter, paddingCounter);
 	}
 }
