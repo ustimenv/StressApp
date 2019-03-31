@@ -6,39 +6,43 @@ import java.util.ArrayList;
 
 public class FeelGoodRoutine
 {
-	private ArrayList <FeelGoodRoutineEntry> feelGoodList;
-	private static final int PADDING_CONSTANT = 50;
+	public class FeelGoodRoutineEntry
+	{
+		String activityName;
+		FeelGoodRoutineEntry(String activityName) {
+			this.activityName = activityName;
+		}
+	}
+
+
+	private ArrayList<FeelGoodRoutineEntry> feelGoodList;
+	public static String[] defaults = {"Pet dog","Have tea","Go for a walk","Meditation"};
 	
 	FeelGoodRoutine(Context context)
 	{
 		feelGoodList = new ArrayList<>();
-//		initDefaults(context);
+		initDefaults();
 		
 	}
 	
 	void initDefaults()
 	{
-//		feelGoodList.add(new FeelGoodRoutineEntry("Pet dog", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Have tea", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Go for a walk", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Meditation", context, feelGoodList.size()*PADDING_CONSTANT));
-	}
-	void addFeelGoodRoutineEntry(String name, Context context)
-	{
-//		feelGoodList.add(new FeelGoodRoutineEntry(name, context, feelGoodList.size()*PADDING_CONSTANT));
+		for (String a : defaults)
+		{
+			feelGoodList.add(new FeelGoodRoutineEntry(a));
+		}
 	}
 
-	void removeFeelGoodRoutineEntry(FeelGoodRoutineEntry feelGoodRoutineEntry, Context context)
+	void addFeelGoodRoutineEntry(String name)
 	{
-//		if(this.feelGoodList.contains(feelGoodRoutineEntry))
-//		{
-//			int index = this.feelGoodList.indexOf(feelGoodRoutineEntry);
-//			this.feelGoodList.remove(feelGoodRoutineEntry);
-//			for (int i=index; i<this.feelGoodList.size(); i++)
-//			{
-//				FeelGoodRoutineEntry f = this.feelGoodList.get(i);
-//				f.moveEntry(i*PADDING_CONSTANT);
-//			}
-//		}
+		feelGoodList.add(new FeelGoodRoutineEntry(name));
+	}
+
+	void removeFeelGoodRoutineEntry(FeelGoodRoutineEntry feelGoodRoutineEntry)
+	{
+		if(this.feelGoodList.contains(feelGoodRoutineEntry))
+		{
+			this.feelGoodList.remove(feelGoodRoutineEntry);
+		}
 	}
 }
