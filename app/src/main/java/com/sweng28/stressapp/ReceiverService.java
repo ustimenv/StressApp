@@ -49,7 +49,10 @@ public class ReceiverService extends IntentService
 					s.close();
 					serverSocket.close();
 					is.close();
-				}catch(Exception e){Log.i("1", e.getMessage());}
+				}catch(Exception e)
+				{
+					Log.i("1", e.getMessage());
+				}
 			}
 		}
 	}

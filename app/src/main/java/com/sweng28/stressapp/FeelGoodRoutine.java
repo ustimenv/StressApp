@@ -12,34 +12,33 @@ public class FeelGoodRoutine
 	FeelGoodRoutine(Context context)
 	{
 		feelGoodList = new ArrayList<>();
-		initDefaults(context);
+//		initDefaults(context);
 		
 	}
 	
-	private void initDefaults(Context context)
+	void initDefaults()
 	{
-		feelGoodList.add(new FeelGoodRoutineEntry("Pet dog", context, feelGoodList.size()*PADDING_CONSTANT));
-		feelGoodList.add(new FeelGoodRoutineEntry("Have tea", context, feelGoodList.size()*PADDING_CONSTANT));
-		feelGoodList.add(new FeelGoodRoutineEntry("Go for a walk", context, feelGoodList.size()*PADDING_CONSTANT));
-		feelGoodList.add(new FeelGoodRoutineEntry("Meditation", context, feelGoodList.size()*PADDING_CONSTANT));
+//		feelGoodList.add(new FeelGoodRoutineEntry("Pet dog", context, feelGoodList.size()*PADDING_CONSTANT));
+//		feelGoodList.add(new FeelGoodRoutineEntry("Have tea", context, feelGoodList.size()*PADDING_CONSTANT));
+//		feelGoodList.add(new FeelGoodRoutineEntry("Go for a walk", context, feelGoodList.size()*PADDING_CONSTANT));
+//		feelGoodList.add(new FeelGoodRoutineEntry("Meditation", context, feelGoodList.size()*PADDING_CONSTANT));
 	}
 	void addFeelGoodRoutineEntry(String name, Context context)
 	{
-		feelGoodList.add(new FeelGoodRoutineEntry(name, context, feelGoodList.size()*PADDING_CONSTANT));
+//		feelGoodList.add(new FeelGoodRoutineEntry(name, context, feelGoodList.size()*PADDING_CONSTANT));
 	}
 
 	void removeFeelGoodRoutineEntry(FeelGoodRoutineEntry feelGoodRoutineEntry, Context context)
 	{
-		if this.feelGoodList.contains(feelGoodRoutineEntry)
-		{
-			int index = this.feelGoodList.indexOf(feelGoodRoutineEntry)
-			this.feelGoodList.remove(feelGoodRoutineEntry);
-			for (int i=index; i<this.feelGoodList.size(); i++)
-			{
-				FeelGoodRoutineEntry f = this.feelGoodList.get(i);
-				f.move(i*PADDING_CONSTANT)
-			}
-		}
-		return;
+//		if(this.feelGoodList.contains(feelGoodRoutineEntry))
+//		{
+//			int index = this.feelGoodList.indexOf(feelGoodRoutineEntry);
+//			this.feelGoodList.remove(feelGoodRoutineEntry);
+//			for (int i=index; i<this.feelGoodList.size(); i++)
+//			{
+//				FeelGoodRoutineEntry f = this.feelGoodList.get(i);
+//				f.moveEntry(i*PADDING_CONSTANT);
+//			}
+//		}
 	}
 }

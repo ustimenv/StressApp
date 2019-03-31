@@ -15,38 +15,42 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
 
-import java.util.ArrayList;
-
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 	private FeelGoodRoutine feelGoodRoutine;
+	private LinearLayout linearLayout;
+	private FloatingActionButton fab;
+	private DrawerLayout drawer;
+	NavigationView navigationView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		linearLayout = findViewById(R.id.linearLayout);
+		fab =  findViewById(R.id.fab);
+		drawer = findViewById(R.id.drawer_layout);
+		navigationView = (NavigationView) findViewById(R.id.nav_view);
+		
 		feelGoodRoutine = new FeelGoodRoutine(getBaseContext());
 		
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+		
+		setSupportActionBar(toolbar);
+		
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view)
 			{
-				Snackbar.make(view, "Adding new Activity to the Feel-good routine", Snackbar.LENGTH_LONG)
-						.setAction("Action", null).show();
-				addFeelGoodRoutineEntry();
+				Snackbar.make(view, "Adding new Activity to the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+//				addFeelGoodRoutineEntry();
 			}
 		});
 		
-		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.bringToFront();
-		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-				this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 		drawer.addDrawerListener(toggle);
 		toggle.syncState();
-		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 	
 		initFeelGood();
@@ -56,7 +60,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	}
 	private void initFeelGood()
 	{
-	
+		feelGoodRoutine.initDefaults();
 	}
 	
 	public void onCheckboxChecked(View view)
@@ -80,14 +84,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
@@ -103,22 +109,35 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
-	public boolean onNavigationItemSelected(MenuItem item) {
+	public boolean onNavigationItemSelected(MenuItem item)
+	{
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		
-		if (id == R.id.nav_camera) {
+		if (id == R.id.nav_camera)
+		{
 			// Handle the camera action
-		} else if (id == R.id.nav_gallery) {
+		}
+		else if (id == R.id.nav_gallery)
+		{
 		
-		} else if (id == R.id.nav_slideshow) {
+		}
+		else if (id == R.id.nav_slideshow)
+		{
 		
-		} else if (id == R.id.nav_manage) {
+		}
+		else if (id == R.id.nav_manage)
+		{
 		
-		} else if (id == R.id.nav_share) {
+		}
+		else if (id == R.id.nav_share)
+		{
 		
-		} else if (id == R.id.nav_send) {
-		
+		}
+		else if (id == R.id.nav_send)
+		{
+			Intent intent = new Intent(HomeScreen.this, LoginActivity.class);
+			startActivity(intent);
 		}
 		
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -128,14 +147,23 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	
 	private void addFeelGoodRoutineEntry()
 	{
+		CheckBox entry = new CheckBox(this);
+		entry.setLayoutParams(new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT));
+
+		entry.setText("Woop woop");
+		linearLayout.addView(entry);
+		
 //		EditText activity;
 //		Button newChat = new Button(this);
 //		newChat.setLayoutParams(new Relativelayout.LayoutParams(
 //				Relativelayout.LayoutParams.MATCH_PARENT,
 //				Relativelayout.LayoutParams.MATCH_PARENT));
-		
+//
 //		newChat.setText(chatNameStr + assignedClientID);
-		
+//
 //		Relativelayout.addView(newChat);
 	}
+	
 }

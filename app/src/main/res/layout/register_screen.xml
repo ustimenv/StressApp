@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/registerScreen">
+
+    <EditText
+            android:id="@+id/nameBox"
+            android:layout_marginTop="100dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your name" >
+    </EditText>
+    <EditText
+            android:id="@+id/usernameBox"
+            android:layout_marginTop="100dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your username" >
+    </EditText>
+
+
+
+    <EditText
+            android:id="@+id/passwordBox"
+            android:inputType="textPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Choose password">
+    </EditText>
+
+    <EditText
+            android:id="@+id/confirmPasswordBox"
+            android:inputType="textPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm password">
+    </EditText>
+
+
+    <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" >
+    </Button>
+
+    <TextView
+            android:id="@+id/registrationFeedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No feedback" >
+    </TextView>
+
+</LinearLayout>
