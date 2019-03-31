@@ -28,16 +28,18 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 		linearLayout = findViewById(R.id.linearLayout);
 		fab =  findViewById(R.id.fab);
 		drawer = findViewById(R.id.drawer_layout);
 		navigationView = (NavigationView) findViewById(R.id.nav_view);
-		
+
 		feelGoodRoutine = new FeelGoodRoutine(getBaseContext());
 		
-		
+		FloatingActionButton fab = findViewById(R.id.fab);
+
 		setSupportActionBar(toolbar);
-		
+
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view)
@@ -47,10 +49,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 			}
 		});
 		
+		DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		drawer.bringToFront();
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 		drawer.addDrawerListener(toggle);
 		toggle.syncState();
+		NavigationView navigationView = findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 	
 		initFeelGood();
@@ -114,33 +118,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		
-		if (id == R.id.nav_camera)
-		{
-			// Handle the camera action
-		}
-		else if (id == R.id.nav_gallery)
-		{
-		
-		}
-		else if (id == R.id.nav_slideshow)
-		{
-		
-		}
-		else if (id == R.id.nav_manage)
-		{
-		
-		}
-		else if (id == R.id.nav_share)
-		{
-		
-		}
-		else if (id == R.id.nav_send)
-		{
-			Intent intent = new Intent(HomeScreen.this, LoginActivity.class);
+		if (id == R.id.goals) {
+			Intent intent = new Intent(HomeScreen.this, Goals.class);
 			startActivity(intent);
 		}
 		
-		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
 	}
@@ -154,7 +137,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
 		entry.setText("Woop woop");
 		linearLayout.addView(entry);
-		
+
 //		EditText activity;
 //		Button newChat = new Button(this);
 //		newChat.setLayoutParams(new Relativelayout.LayoutParams(
@@ -165,5 +148,5 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 //
 //		Relativelayout.addView(newChat);
 	}
-	
+
 }
