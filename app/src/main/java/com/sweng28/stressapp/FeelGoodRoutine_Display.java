@@ -13,85 +13,49 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FeelGoodRoutine_Display extends AppCompatActivity {
-    private ListView listView;
-    private ListNormalAdapter listNormalAdapter;
-    private ListCustomizedAdapter listCustomizedAdapter;
-    private FeelGoodRoutine_Editor editor;
-    private int selectedPosition = -1;
-    private boolean isCustomizedList;
+import java.util.ArrayList;
+
+public class FeelGoodRoutine_Display extends BaseAdapter {
+    private ArrayList<String> activities;
+    private LayoutInflater inflater;
+
+    public FeelGoodRoutine_Display(ArrayList<String> activities) {
+        this.activities = activities;
+        //inflater = getLayoutInflater();
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.feelgoodroutine_display);
-        initControls();
+    public int getCount() {
+        return this.activities.size();
     }
-    private void initControls() {
-        listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (isCustomizedList) {
-                    selectedPosition = i;
-                    listCustomizedAdapter.notifyDataSetChanged();
-                }
-                Toast.makeText(FeelGoodRoutine_Display.this, "You have selected [" + mobileArray[i] + "]", Toast.LENGTH_SHORT).show();
-            }
-        });
-        listNormalAdapter = new ListNormalAdapter(mobileArray);
-        listCustomizedAdapter = new ListCustomizedAdapter(mobileArray);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            if (bundle.getBoolean("isNormalList")) {
-                listView.setAdapter(listNormalAdapter);
-                isCustomizedList = false;
-            } else {
-                isCustomizedList = true;
-                listView.setAdapter(listCustomizedAdapter);
-            }
-        }
+
+    @Override
+    public Object getItem(int i) {
+        return this.activities.get(i);
     }
-    public class ListNormalAdapter extends BaseAdapter {
-        private final String[] mobileNames;
-        private LayoutInflater inflater;
 
-        public ListNormalAdapter(String[] strings) {
-            this.mobileNames = strings;
-            inflater = getLayoutInflater();
-        }
-
-        @Override
-        public int getCount() {
-            return mobileNames.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup viewGroup) {
-            ViewHolder holder;
-            if (convertView == null) {
-                holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.feelgoodroutine_display_row, null);
-                holder.textName = (TextView) convertView.findViewById(R.id.textName);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-            holder.textName.setText(mobileNames[position]);
-            return convertView;
-        }
-
-        public class ViewHolder {
-            private TextView textName;
-        }
+    @Override
+    public long getItemId(int i) {
+        return 0;
     }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        ViewHolder holder;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.feelgoodroutine_display_row, null);
+            holder.textName = (TextView) convertView.findViewById(R.id.textName);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.textName.setText(this.activities.get(position));
+        return convertView;
+    }
+
+    public class ViewHolder {
+        private TextView textName;
+    }
+
 }

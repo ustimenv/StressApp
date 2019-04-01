@@ -31,6 +31,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	private FloatingActionButton faButton;
 	private DrawerLayout drawer;
 	NavigationView navigationView;
+	ListView listView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -41,10 +43,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		faButton =  findViewById(R.id.fab);
 		drawer = findViewById(R.id.drawer_layout);
 		navigationView = (NavigationView) findViewById(R.id.nav_view);
+		listView = (ListView) findViewById(R.id.listView);
 		
 		this.feelGoodRoutineBackEnd = new FeelGoodRoutine_BackEnd();
 		this.feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutineBackEnd, this.linearLayout, getBaseContext());
 
+		this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor.getFeelGoodRoutine());
+		listView.setAdapter(this.feelGoodRoutineDisplay);
 
 		setSupportActionBar(toolbar);
 		//final EditText result = (EditText) findViewById(R.id.editTextResult);

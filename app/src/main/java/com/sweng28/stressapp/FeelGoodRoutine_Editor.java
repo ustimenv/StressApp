@@ -87,7 +87,14 @@ public class FeelGoodRoutine_Editor extends Activity implements NavigationView.O
                                 dialog.cancel();
                             }
                         });
+
+                // create alert dialog
+                //AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
                 alertDialogBuilder.show();
+
+                //
             }
         });
 
@@ -126,8 +133,13 @@ public class FeelGoodRoutine_Editor extends Activity implements NavigationView.O
         linearLayout.addView(entry);
     }
 
-
+    public ArrayList<String> getFeelGoodRoutine()
+    {
+        return this.feelGoodRoutine.getFeelGoodList();
+    }
 /*
+
+
     void removeFeelGoodRoutineEntry(int index)
     {
 			for (int i=index; i<this.feelGoodList.size(); i++)
@@ -137,6 +149,4 @@ public class FeelGoodRoutine_Editor extends Activity implements NavigationView.O
             }
     }
 */
-
-
 }
