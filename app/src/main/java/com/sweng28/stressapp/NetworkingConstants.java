@@ -10,8 +10,11 @@ public abstract class NetworkingConstants
 	
 	public final static String REGISTRATION_REQ  =String.valueOf(new Character((char)180));//client wishes to create a profile
 	public final static String LOGIN_REQ 	     =String.valueOf(new Character((char)181));//client is attempting to log in
-	
-	
+
+
+	public final static String GOAL_ADD			=String.valueOf(new Character((char)197));//user adds a new goal
+	public final static String GOAL_DEL			=String.valueOf(new Character((char)199));//user removes an existing goal
+
 	public final static String FRIEND_ADD		 =String.valueOf(new Character((char)182));//user sends a friend a request
 	public final static String FRIEND_ACK    	 =String.valueOf(new Character((char)183));//user accepts friend's request
 	public final static String FRIEND_NAK    	 =String.valueOf(new Character((char)184));//user rejects friend's request

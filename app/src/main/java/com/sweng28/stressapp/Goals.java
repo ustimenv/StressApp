@@ -1,18 +1,21 @@
 package com.sweng28.stressapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Goals extends FragmentActivity implements NewGoalDialog.NewGoalDialogListener {
+public class Goals extends AppCompatActivity {
     private static final String TAG = "GoalActivity";
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
@@ -26,26 +29,42 @@ public class Goals extends FragmentActivity implements NewGoalDialog.NewGoalDial
         FloatingActionButton addGoal = findViewById(R.id.add_goal_fab);
         addGoal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showEditDialog();
+            public void onClick(View view)
+            {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        Goals.this
+                );
+
+                final EditText userInput = new EditText(Goals.this);
+                userInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                alertDialogBuilder.setView(userInput);
+                alertDialogBuilder.setTitle("Add New Goal");
+                // set dialog message
+                alertDialogBuilder.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                String goalText = userInput.getText().toString();
+                                Toast.makeText(Goals.this, "Add Goal: " + goalText, Toast.LENGTH_LONG).show();
+                                /*
+                                CODE TO ADD TASK TO DB
+                                 */
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                // show it
+                alertDialogBuilder.show();
             }
         });
 
         updateUI();
-    }
-
-    private void showEditDialog() {
-        FragmentManager fm = getSupportFragmentManager();
-        NewGoalDialog newGoalDialog = new NewGoalDialog();
-        newGoalDialog.show(fm, "fragment_new_goal");
-    }
-
-    @Override
-    public void onFinishEditDialog(String inputText) {
-        Toast.makeText(this, "Add Task: " + inputText, Toast.LENGTH_LONG).show();
-        /*
-        CODE TO ADD TASK TO DB
-         */
     }
 
     public void deleteTask(View view) {
