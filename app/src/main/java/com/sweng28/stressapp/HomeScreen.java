@@ -118,8 +118,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		
-		if (id == R.id.goals) {
+		if (id == R.id.nav_goals) {
 			Intent intent = new Intent(HomeScreen.this, Goals.class);
+			startActivity(intent);
+		}
+		else if (id == R.id.nav_login) {
+			Intent intent = new Intent(HomeScreen.this, LoginActivity.class);
 			startActivity(intent);
 		}
 		

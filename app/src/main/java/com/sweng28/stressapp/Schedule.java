@@ -1,4 +1,4 @@
-package com.example.david.timeline;
+package com.sweng28.stressapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;

@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:id="@+id/registerScreen">
+
+    <EditText
+        android:id="@+id/nameBox"
+        android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:id="@+id/registerScreen">
-
-    <EditText
-            android:id="@+id/nameBox"
-            android:layout_marginTop="100dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your name" >
-    </EditText>
-    <EditText
-            android:id="@+id/usernameBox"
-            android:layout_marginTop="100dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your username" >
-    </EditText>
-
-
-
-    <EditText
-            android:id="@+id/passwordBox"
-            android:inputType="textPassword"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Choose password">
+        android:layout_height="wrap_content"
+        android:hint="Your name" >
     </EditText>
 
     <EditText
-            android:id="@+id/confirmPasswordBox"
-            android:inputType="textPassword"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm password">
+        android:id="@+id/usernameBox"
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your username" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordBox"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Choose password">
+    </EditText>
+
+    <EditText
+        android:id="@+id/confirmPasswordBox"
+        android:inputType="textPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Confirm password">
     </EditText>
 
 
     <Button
-            android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit" >
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="Register"
+        android:textColor="#ffffff">
     </Button>
 
     <TextView
-            android:id="@+id/registrationFeedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No feedback" >
+        android:id="@+id/registrationFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="No feedback" >
     </TextView>
 
 </LinearLayout>
