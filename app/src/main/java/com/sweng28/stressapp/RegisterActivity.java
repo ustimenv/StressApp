@@ -59,11 +59,13 @@ public class RegisterActivity extends Activity implements MessageResultReceiver.
 	public void onReceiveResult(int resultCode, Bundle result)
 	{
 		String message = result.getString("message");
+		
 		try
 		{
 			String flag = message.substring(1);
 			if(flag.equals(NetworkingConstants.REGISTRATION_ACK))
 			{
+				Toast.makeText(getBaseContext(), "Registration complete!", Toast.LENGTH_LONG).show();
 				StringTokenizer st = new StringTokenizer(message, NetworkingConstants.DELIMITER);
 				String tmp = st.nextToken();
 				int assignedClientID = -1;
@@ -81,10 +83,11 @@ public class RegisterActivity extends Activity implements MessageResultReceiver.
 			}
 			else if(flag.equals(NetworkingConstants.REGISTRATION_NAK))
 			{
-				Toast.makeText(getBaseContext(), "Please choose a differernt username!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getBaseContext(), "Please choose a different username!", Toast.LENGTH_LONG).show();
 			}
 			else
 			{
+				Toast.makeText(getBaseContext(), "|"+ message.substring(1)+"|" + "Something went terribly wrong!", Toast.LENGTH_LONG).show();
 				Log.i("1", "Unknown registration flag" + flag);
 			}
 		}catch(NullPointerException e)
