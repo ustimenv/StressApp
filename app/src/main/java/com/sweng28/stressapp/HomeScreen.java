@@ -40,16 +40,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		linearLayout = findViewById(R.id.linearLayout);
-		faButton =  findViewById(R.id.fab);
+		faButton =  findViewById(R.id.fab_edit_feel_good_routine);
 		drawer = findViewById(R.id.drawer_layout);
-		navigationView = (NavigationView) findViewById(R.id.nav_view);
-		listView = (ListView) findViewById(R.id.listView);
-		
+		listView = findViewById(R.id.listView);
+		navigationView = findViewById(R.id.nav_view);
+
 		this.feelGoodRoutineBackEnd = new FeelGoodRoutine_BackEnd();
 		this.feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutineBackEnd, this.linearLayout, getBaseContext());
 
-		this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor.getFeelGoodRoutine());
-		listView.setAdapter(this.feelGoodRoutineDisplay);
+		//this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor.getFeelGoodRoutine());
+		//listView.setAdapter(this.feelGoodRoutineDisplay);
 
 		setSupportActionBar(toolbar);
 		//final EditText result = (EditText) findViewById(R.id.editTextResult);
@@ -86,7 +86,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 	public void onBackPressed()
 	{
 		
-		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		if (drawer.isDrawerOpen(GravityCompat.START)) {
 			drawer.closeDrawer(GravityCompat.START);
 		} else {
@@ -125,27 +125,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		
-		if (id == R.id.nav_camera)
-		{
-			// Handle the camera action
-		}
-		else if (id == R.id.nav_gallery)
-		{
-		
-		}
-		else if (id == R.id.nav_slideshow)
-		{
-		
-		}
-		else if (id == R.id.nav_manage)
-		{
-		
-		}
-		else if (id == R.id.nav_share)
-		{
-		
-		}
-		else if (id == R.id.nav_send)
+		if (id == R.id.nav_login)
 		{
 			Intent intent = new Intent(HomeScreen.this, LoginActivity.class);
 			startActivity(intent);

@@ -49,7 +49,7 @@ public class FeelGoodRoutine_Editor extends Activity implements NavigationView.O
         setContentView(R.layout.feelgoodroutine_edit_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         linearLayout = findViewById(R.id.linearLayout);
-        FloatingActionButton faButton =  findViewById(R.id.fab);
+        FloatingActionButton faButton =  findViewById(R.id.fab_edit_feel_good_routine);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 

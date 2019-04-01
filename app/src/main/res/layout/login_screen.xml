@@ -2,20 +2,22 @@
 <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_gravity="center_vertical"
             android:id="@+id/loginScreen">
 
     <EditText
             android:id="@+id/usernameBox"
-            android:layout_marginTop="100dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Username" >
+            android:hint="Username"
+            android:inputType="text" >
     </EditText>
 
     <EditText
             android:id="@+id/passwordBox"
+            android:layout_marginTop="20dp"
             android:inputType="textPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -25,24 +27,44 @@
 
     <TextView
             android:id="@+id/loginMessageBox"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="LOGIN INFO" >
     </TextView>
 
-    <Button
-            android:id="@+id/sendButton"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal">
+        <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Login"
+                android:textColor="#ffffff">
+        </Button>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit" >
-    </Button>
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="or"
+            android:textSize="18sp" />
 
-    <Button
-            android:id="@+id/registerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register?" >
-    </Button>
-
+        <Button
+                android:id="@+id/registerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Register"
+                android:textColor="#ffffff">
+        </Button>
+    </LinearLayout>
 
 </LinearLayout>
