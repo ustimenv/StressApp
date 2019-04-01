@@ -1,9 +1,15 @@
 package com.sweng28.stressapp;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +23,12 @@ import android.widget.*;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-	private FeelGoodRoutine feelGoodRoutine;
+	final Context context = this;
+	private FeelGoodRoutine_BackEnd feelGoodRoutineBackEnd;
+	private FeelGoodRoutine_Editor feelGoodRoutineEditor;
+	private FeelGoodRoutine_Display feelGoodRoutineDisplay;
 	private LinearLayout linearLayout;
-	private FloatingActionButton fab;
+	private FloatingActionButton faButton;
 	private DrawerLayout drawer;
 	NavigationView navigationView;
 	@Override
@@ -29,21 +38,54 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		linearLayout = findViewById(R.id.linearLayout);
-		fab =  findViewById(R.id.fab);
+		faButton =  findViewById(R.id.fab);
 		drawer = findViewById(R.id.drawer_layout);
 		navigationView = (NavigationView) findViewById(R.id.nav_view);
 		
-		feelGoodRoutine = new FeelGoodRoutine(getBaseContext());
-		
+		this.feelGoodRoutineBackEnd = new FeelGoodRoutine_BackEnd();
+		this.feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutineBackEnd, this.linearLayout, getBaseContext());
+		this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor);
+
+		this.feelGoodRoutineEditor.drawFeelGoodList();
 		
 		setSupportActionBar(toolbar);
-		
-		fab.setOnClickListener(new View.OnClickListener() {
+		final EditText result = (EditText) findViewById(R.id.editTextResult);
+
+		faButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view)
 			{
-				Snackbar.make(view, "Adding new Activity to the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-//				addFeelGoodRoutineEntry();
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						context);
+
+				final EditText userInput = new EditText(context);
+				userInput.setInputType(InputType.TYPE_CLASS_TEXT);
+				alertDialogBuilder.setView(userInput);
+				alertDialogBuilder.setTitle("Add New Activity");
+				// set dialog message
+				alertDialogBuilder.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,int id) {
+							String activity = userInput.getText().toString();
+							feelGoodRoutineEditor.addFeelGoodEntry(activity);
+						}
+					});
+				alertDialogBuilder.setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					});
+
+				// create alert dialog
+				//AlertDialog alertDialog = alertDialogBuilder.create();
+
+				// show it
+				alertDialogBuilder.show();
+
+				//
 			}
 		});
 		
@@ -52,17 +94,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		drawer.addDrawerListener(toggle);
 		toggle.syncState();
 		navigationView.setNavigationItemSelectedListener(this);
-	
-		initFeelGood();
-	
+
 		navigationView.bringToFront();
 		
 	}
-	private void initFeelGood()
-	{
-		feelGoodRoutine.initDefaults();
-	}
-	
+
 	public void onCheckboxChecked(View view)
 	{
 		boolean checked = ((CheckBox) view).isChecked();
@@ -143,27 +179,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
-	}
-	
-	private void addFeelGoodRoutineEntry()
-	{
-		CheckBox entry = new CheckBox(this);
-		entry.setLayoutParams(new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT));
-
-		entry.setText("Woop woop");
-		linearLayout.addView(entry);
-		
-//		EditText activity;
-//		Button newChat = new Button(this);
-//		newChat.setLayoutParams(new Relativelayout.LayoutParams(
-//				Relativelayout.LayoutParams.MATCH_PARENT,
-//				Relativelayout.LayoutParams.MATCH_PARENT));
-//
-//		newChat.setText(chatNameStr + assignedClientID);
-//
-//		Relativelayout.addView(newChat);
 	}
 	
 }
