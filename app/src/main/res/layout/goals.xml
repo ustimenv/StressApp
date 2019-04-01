@@ -11,7 +11,7 @@
     tools:context="com.sweng28.stressapp.Goals">
 
     <ListView
-        android:id="@+id/list_todo"
+        android:id="@+id/list_goals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

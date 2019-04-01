@@ -24,7 +24,7 @@ public class Goals extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals);
-        mTaskListView = findViewById(R.id.list_todo);
+        mTaskListView = findViewById(R.id.list_goals);
 
         FloatingActionButton addGoal = findViewById(R.id.add_goal_fab);
         addGoal.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +69,9 @@ public class Goals extends AppCompatActivity {
 
     public void deleteTask(View view) {
         View parent = (View) view.getParent();
-        TextView taskTextView = parent.findViewById(R.id.task_title);
-        String task = String.valueOf(taskTextView.getText());
+        TextView goalTextView = parent.findViewById(R.id.goal_title);
+        String goalText = String.valueOf(goalTextView.getText());
+        Toast.makeText(Goals.this, "Remove Goal: " + goalText, Toast.LENGTH_LONG).show();
         /*
         SQLiteDatabase db = mHelper.getWritableDatabase();
         db.delete(TaskContract.TaskEntry.TABLE,
@@ -103,8 +104,8 @@ public class Goals extends AppCompatActivity {
 
         if (mAdapter == null) {
             mAdapter = new ArrayAdapter<>(this,
-                    R.layout.item_todo,
-                    R.id.task_title,
+                    R.layout.item_goal,
+                    R.id.goal_title,
                     taskList);
             mTaskListView.setAdapter(mAdapter);
         } else {
