@@ -9,4 +9,5 @@
     <string name="add_task">Add Task</string>
     <string name="placeholder">Foo Bar</string>
     <string name="done">Done</string>
+    <string name="new_goal">New Goal</string>
 </resources>
