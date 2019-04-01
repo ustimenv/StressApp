@@ -22,6 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
+        android:background="@color/colorAccent"
         app:srcCompat="@drawable/ic_star"
         app:showAsAction="always"/>
 </RelativeLayout>
