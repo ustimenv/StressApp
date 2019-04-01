@@ -48,7 +48,7 @@ public class LoginActivity extends Activity implements MessageResultReceiver.Rec
 				SharedPreferences.Editor editor = prefs.edit();		//remember some of the login details to simplify the procedure for next launch
 				editor.putInt("ID", assignedClientID);
 				editor.apply();
-				new SendMessageAsync().execute(NetworkingConstants.LOGIN_REQ, usernameBox.getText().toString(), passwordBox.getText().toString(), String.valueOf(assignedClientID));
+				new SendMessageAsync().execute(String.valueOf(NetworkingConstants.LOGIN_REQ), usernameBox.getText().toString(), passwordBox.getText().toString(), String.valueOf(assignedClientID));
 			}
 		});
 		registerButton.setOnClickListener(new View.OnClickListener()
