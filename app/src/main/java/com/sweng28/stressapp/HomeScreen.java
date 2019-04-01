@@ -44,7 +44,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		
 		this.feelGoodRoutineBackEnd = new FeelGoodRoutine_BackEnd();
 		this.feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutineBackEnd, this.linearLayout, getBaseContext());
-		this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor);
 
 
 		setSupportActionBar(toolbar);

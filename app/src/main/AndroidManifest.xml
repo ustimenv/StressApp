@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".FeelGoodRoutine_Editor"
+            android:label="Edit Feel Good Routine"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity
                 android:name=".LoginActivity"
