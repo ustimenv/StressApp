@@ -46,46 +46,17 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		this.feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutineBackEnd, this.linearLayout, getBaseContext());
 		this.feelGoodRoutineDisplay = new FeelGoodRoutine_Display(this.feelGoodRoutineEditor);
 
-		this.feelGoodRoutineEditor.drawFeelGoodList();
-		
+
 		setSupportActionBar(toolbar);
-		final EditText result = (EditText) findViewById(R.id.editTextResult);
+		//final EditText result = (EditText) findViewById(R.id.editTextResult);
 
 		faButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view)
 			{
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						context);
-
-				final EditText userInput = new EditText(context);
-				userInput.setInputType(InputType.TYPE_CLASS_TEXT);
-				alertDialogBuilder.setView(userInput);
-				alertDialogBuilder.setTitle("Add New Activity");
-				// set dialog message
-				alertDialogBuilder.setPositiveButton("OK",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog,int id) {
-							String activity = userInput.getText().toString();
-							feelGoodRoutineEditor.addFeelGoodEntry(activity);
-						}
-					});
-				alertDialogBuilder.setNegativeButton("Cancel",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-
-				// create alert dialog
-				//AlertDialog alertDialog = alertDialogBuilder.create();
-
-				// show it
-				alertDialogBuilder.show();
-
-				//
+				//System.out.println("homeScreen onClick");
+				Intent editorScreen = new Intent(HomeScreen.this, FeelGoodRoutine_Editor.class);
+				startActivity(editorScreen);
 			}
 		});
 		
@@ -99,14 +70,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		
 	}
 
-	public void onCheckboxChecked(View view)
+/*	public void onCheckboxChecked(View view)
 	{
 		boolean checked = ((CheckBox) view).isChecked();
 		switch (view.getId())
 		{
 		
 		}
-	}
+	} */
 	@Override
 	public void onBackPressed()
 	{
