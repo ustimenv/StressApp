@@ -11,20 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Goals extends AppCompatActivity {
-    private static final String TAG = "GoalActivity";
+    //private static final String TAG = "GoalActivity";
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
+    private ArrayList<String> goalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals);
         mTaskListView = findViewById(R.id.list_goals);
+        goalList = new ArrayList<>();
 
         FloatingActionButton addGoal = findViewById(R.id.add_goal_fab);
         addGoal.setOnClickListener(new View.OnClickListener() {
@@ -45,10 +46,11 @@ public class Goals extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog,int id) {
                                 String goalText = userInput.getText().toString();
-                                Toast.makeText(Goals.this, "Add Goal: " + goalText, Toast.LENGTH_LONG).show();
+                                //Toast.makeText(Goals.this, "Add Goal: " + goalText, Toast.LENGTH_LONG).show();
                                 /*
                                 CODE TO ADD TASK TO DB
                                  */
+                                goalList.add(goalText);
                             }
                         });
                 alertDialogBuilder.setNegativeButton("Cancel",
@@ -71,50 +73,25 @@ public class Goals extends AppCompatActivity {
         View parent = (View) view.getParent();
         TextView goalTextView = parent.findViewById(R.id.goal_title);
         String goalText = String.valueOf(goalTextView.getText());
-        Toast.makeText(Goals.this, "Remove Goal: " + goalText, Toast.LENGTH_LONG).show();
-        /*
-        SQLiteDatabase db = mHelper.getWritableDatabase();
-        db.delete(TaskContract.TaskEntry.TABLE,
-                TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
-                new String[]{task});
-        db.close();
-        */
+        //Toast.makeText(Goals.this, "Remove Goal: " + goalText, Toast.LENGTH_LONG).show();
+        goalList.remove(goalText);
         updateUI();
     }
 
 
     private void updateUI() {
 
-        ArrayList<String> taskList = new ArrayList<>();
-        taskList.add("FOO");
-        taskList.add("BAR");
-        taskList.add("BINGO");
-        taskList.add("CRAP");
-        /*
-        SQLiteDatabase db = mHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
-                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
-            taskList.add(cursor.getString(idx));
-        }
-        */
-
         if (mAdapter == null) {
             mAdapter = new ArrayAdapter<>(this,
                     R.layout.item_goal,
                     R.id.goal_title,
-                    taskList);
+                    goalList);
             mTaskListView.setAdapter(mAdapter);
         } else {
             mAdapter.clear();
-            mAdapter.addAll(taskList);
+            mAdapter.addAll(goalList);
             mAdapter.notifyDataSetChanged();
         }
 
-        //cursor.close();
-        //db.close();
     }
 }
