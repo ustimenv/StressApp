@@ -15,13 +15,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
 
+import java.util.ArrayList;
+
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-	private FeelGoodRoutine feelGoodRoutine;
-	private LinearLayout linearLayout;
-	private FloatingActionButton fab;
 	private DrawerLayout drawer;
 	NavigationView navigationView;
+	private ListView feelGoodRoutineList;
+	private ArrayAdapter<String> feelGoodAdapter;
+
+	public static final String[] DEFAULTS = {"Pet dog","Have tea","Go for a walk","Meditation"};
+
+	private ArrayList<String> feelGoodRoutine;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -29,13 +35,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		linearLayout = findViewById(R.id.linearLayout);
-		fab =  findViewById(R.id.fab);
-		drawer = findViewById(R.id.drawer_layout);
-		navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-		feelGoodRoutine = new FeelGoodRoutine(getBaseContext());
-		
+		drawer = findViewById(R.id.drawer_layout);
+		navigationView = findViewById(R.id.nav_view);
+
+		feelGoodRoutineList = findViewById(R.id.list_feel_good);
+
+
 		FloatingActionButton fab = findViewById(R.id.fab);
 
 		setSupportActionBar(toolbar);
@@ -44,8 +50,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 			@Override
 			public void onClick(View view)
 			{
-				Snackbar.make(view, "Adding new Activity to the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-//				addFeelGoodRoutineEntry();
+				Snackbar.make(view, "Editing the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+//
 			}
 		});
 		
@@ -57,29 +63,36 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		NavigationView navigationView = findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 	
-		initFeelGood();
-	
+		feelGoodRoutine = new ArrayList<>();
+		for (String a : DEFAULTS)
+		{
+			feelGoodRoutine.add(a);
+		}
+
+		updateFeelGood();
 		navigationView.bringToFront();
 		
 	}
-	private void initFeelGood()
-	{
-		feelGoodRoutine.initDefaults();
-	}
-	
-	public void onCheckboxChecked(View view)
-	{
-		boolean checked = ((CheckBox) view).isChecked();
-		switch (view.getId())
-		{
-		
+
+	public void updateFeelGood() {
+		if (feelGoodAdapter == null) {
+			feelGoodAdapter = new ArrayAdapter<>(this,
+					R.layout.item_feel_good,
+					R.id.feel_good_title,
+					feelGoodRoutine);
+			feelGoodRoutineList.setAdapter(feelGoodAdapter);
+		} else {
+			feelGoodAdapter.clear();
+			feelGoodAdapter.addAll(feelGoodRoutine);
+			feelGoodAdapter.notifyDataSetChanged();
 		}
 	}
+
 	@Override
 	public void onBackPressed()
 	{
 		
-		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		if (drawer.isDrawerOpen(GravityCompat.START)) {
 			drawer.closeDrawer(GravityCompat.START);
 		} else {
@@ -130,27 +143,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
-	}
-	
-	private void addFeelGoodRoutineEntry()
-	{
-		CheckBox entry = new CheckBox(this);
-		entry.setLayoutParams(new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT));
-
-		entry.setText("Woop woop");
-		linearLayout.addView(entry);
-
-//		EditText activity;
-//		Button newChat = new Button(this);
-//		newChat.setLayoutParams(new Relativelayout.LayoutParams(
-//				Relativelayout.LayoutParams.MATCH_PARENT,
-//				Relativelayout.LayoutParams.MATCH_PARENT));
-//
-//		newChat.setText(chatNameStr + assignedClientID);
-//
-//		Relativelayout.addView(newChat);
 	}
 
 }
