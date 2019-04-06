@@ -1,44 +1,70 @@
 package com.sweng28.stressapp;
 
-import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class FeelGoodRoutine
+public class FeelGoodRoutine implements Parcelable
 {
-	private ArrayList <FeelGoodRoutineEntry> feelGoodList;
-	private static final int PADDING_CONSTANT = 50;
-	
-	FeelGoodRoutine(Context context)
+
+	public static final Parcelable.Creator<FeelGoodRoutine> CREATOR = new Parcelable.Creator<FeelGoodRoutine>(){
+		public FeelGoodRoutine createFromParcel(Parcel in) {
+			return new FeelGoodRoutine(in);
+		}
+
+		public FeelGoodRoutine[] newArray(int size) {
+			return new FeelGoodRoutine[size];
+		}
+	};
+
+
+	private ArrayList<String> feelGoodList;
+	public static String[] defaults = {"Pet dog","Have tea","Go for a walk","Meditation"};
+
+	FeelGoodRoutine()
 	{
 		feelGoodList = new ArrayList<>();
-//		initDefaults(context);
-		
+		addDefaults();
 	}
-	
-	void initDefaults()
+	FeelGoodRoutine(Parcel in)
 	{
-//		feelGoodList.add(new FeelGoodRoutineEntry("Pet dog", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Have tea", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Go for a walk", context, feelGoodList.size()*PADDING_CONSTANT));
-//		feelGoodList.add(new FeelGoodRoutineEntry("Meditation", context, feelGoodList.size()*PADDING_CONSTANT));
-	}
-	void addFeelGoodRoutineEntry(String name, Context context)
-	{
-//		feelGoodList.add(new FeelGoodRoutineEntry(name, context, feelGoodList.size()*PADDING_CONSTANT));
+		feelGoodList = in.readArrayList(null);
 	}
 
-	void removeFeelGoodRoutineEntry(FeelGoodRoutineEntry feelGoodRoutineEntry, Context context)
+	void addDefaults()
 	{
-//		if(this.feelGoodList.contains(feelGoodRoutineEntry))
-//		{
-//			int index = this.feelGoodList.indexOf(feelGoodRoutineEntry);
-//			this.feelGoodList.remove(feelGoodRoutineEntry);
-//			for (int i=index; i<this.feelGoodList.size(); i++)
-//			{
-//				FeelGoodRoutineEntry f = this.feelGoodList.get(i);
-//				f.moveEntry(i*PADDING_CONSTANT);
-//			}
-//		}
+		for (String a : defaults)
+		{
+			feelGoodList.add(a);
+		}
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeList(this.feelGoodList);
+	}
+
+
+	ArrayList<String> getFeelGoodList()
+	{
+		return this.feelGoodList;
+	}
+	void addFeelGoodRoutineEntry(String activity)
+	{
+		feelGoodList.add(activity);
+	}
+
+	void removeFeelGoodRoutineEntry(String activity)
+	{
+		if(this.feelGoodList.contains(activity))
+		{
+			this.feelGoodList.remove(activity);
+		}
 	}
 }

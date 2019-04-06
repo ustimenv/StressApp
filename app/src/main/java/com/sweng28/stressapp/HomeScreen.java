@@ -2,6 +2,7 @@ package com.sweng28.stressapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.*;
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 	private FeelGoodRoutine feelGoodRoutine;
+	private FeelGoodRoutine_Editor feelGoodRoutineEditor;
 	private LinearLayout linearLayout;
 	private FloatingActionButton fab;
 	private DrawerLayout drawer;
@@ -34,7 +36,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		drawer = findViewById(R.id.drawer_layout);
 		navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-		feelGoodRoutine = new FeelGoodRoutine(getBaseContext());
+		feelGoodRoutine = new FeelGoodRoutine();
+		feelGoodRoutineEditor = new FeelGoodRoutine_Editor(this.feelGoodRoutine, this);
 		
 		FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -44,8 +47,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 			@Override
 			public void onClick(View view)
 			{
-				Snackbar.make(view, "Adding new Activity to the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-//				addFeelGoodRoutineEntry();
+				//Snackbar.make(view, "Editing the Feel-good routine", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+				Intent i = new Intent(HomeScreen.this, FeelGoodRoutine_Editor.class);
+				i.putExtra("fgl", feelGoodRoutine);
+				startActivity(i);
 			}
 		});
 		
@@ -57,14 +62,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 		NavigationView navigationView = findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 	
-		initFeelGood();
-	
 		navigationView.bringToFront();
 		
-	}
-	private void initFeelGood()
-	{
-		feelGoodRoutine.initDefaults();
 	}
 	
 	public void onCheckboxChecked(View view)
