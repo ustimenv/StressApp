@@ -15,18 +15,20 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Goals extends AppCompatActivity {
+public class Goals extends ScreenTemplate
+{
     private static final String TAG = "GoalActivity";
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
-
+    private FloatingActionButton addGoal;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.goals);
+        setContentView(R.layout.activity_goals);
         mTaskListView = findViewById(R.id.list_goals);
-
-        FloatingActionButton addGoal = findViewById(R.id.add_goal_fab);
+        addGoal = findViewById(R.id.add_goal_fab);
+        
         addGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -47,7 +49,7 @@ public class Goals extends AppCompatActivity {
                                 String goalText = userInput.getText().toString();
                                 Toast.makeText(Goals.this, "Add Goal: " + goalText, Toast.LENGTH_LONG).show();
                                 /*
-                                CODE TO ADD TASK TO DB
+                                TODO CODE TO ADD TASK TO DB
                                  */
                             }
                         });
