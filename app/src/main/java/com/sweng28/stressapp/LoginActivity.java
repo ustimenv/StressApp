@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.*;
 
 import java.util.StringTokenizer;
 
-public class LoginActivity extends Activity implements MessageResultReceiver.Receiver
+public class LoginActivity extends AppCompatActivity implements MessageResultReceiver.Receiver
 {
 	Button 	 						sendButton;
 	EditText 						usernameBox;
@@ -27,7 +28,7 @@ public class LoginActivity extends Activity implements MessageResultReceiver.Rec
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_screen);
+		setContentView(R.layout.activity_login);
 		
 		sendButton = findViewById(R.id.sendButton);
 		usernameBox = findViewById(R.id.usernameBox);
@@ -35,7 +36,7 @@ public class LoginActivity extends Activity implements MessageResultReceiver.Rec
 		loginMessageBox = findViewById(R.id.loginMessageBox);
 		registerButton = findViewById(R.id.registerButton);
 		
-		prefs = getApplicationContext().getSharedPreferences("ChatPreferences", MODE_PRIVATE);
+//		prefs = getApplicationContext().getSharedPreferences("ChatPreferences", MODE_PRIVATE);
 		
 		
 		sendButton.setOnClickListener(new View.OnClickListener()
@@ -67,8 +68,8 @@ public class LoginActivity extends Activity implements MessageResultReceiver.Rec
 	{
 		super.onStart();
 		
-		assignedClientID = prefs.getInt("ID", -1);						//retrieve previous session's login details
-		assignedClientID = getIntent().getIntExtra("assignedClientID", assignedClientID);		//if the client had previosouly registered as a new user, overwrite the shared preferences field
+//		assignedClientID = prefs.getInt("ID", -1);						//retrieve previous session's login details
+//		assignedClientID = getIntent().getIntExtra("assignedClientID", assignedClientID);		//if the client had previosouly registered as a new user, overwrite the shared preferences field
 	}
 	@Override
 	public void onReceiveResult(int resultCode, Bundle result)

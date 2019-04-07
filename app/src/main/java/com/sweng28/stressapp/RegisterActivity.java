@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 import java.util.StringTokenizer;
 
-public class RegisterActivity extends Activity implements MessageResultReceiver.Receiver
+public class RegisterActivity extends AppCompatActivity implements MessageResultReceiver.Receiver
 {
 	Button 	 sendButton;
 	EditText nameBox;
@@ -27,7 +28,7 @@ public class RegisterActivity extends Activity implements MessageResultReceiver.
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.register_screen);
+		setContentView(R.layout.activity_register);
 		
 		sendButton = findViewById(R.id.sendButton);
 		nameBox = findViewById(R.id.nameBox);
@@ -59,11 +60,13 @@ public class RegisterActivity extends Activity implements MessageResultReceiver.
 	public void onReceiveResult(int resultCode, Bundle result)
 	{
 		String message = result.getString("message");
+		
 		try
 		{
 			String flag = message.substring(1);
 			if(flag.equals(NetworkingConstants.REGISTRATION_ACK))
 			{
+				Toast.makeText(getBaseContext(), "Registration complete!", Toast.LENGTH_LONG).show();
 				StringTokenizer st = new StringTokenizer(message, NetworkingConstants.DELIMITER);
 				String tmp = st.nextToken();
 				int assignedClientID = -1;
@@ -81,10 +84,11 @@ public class RegisterActivity extends Activity implements MessageResultReceiver.
 			}
 			else if(flag.equals(NetworkingConstants.REGISTRATION_NAK))
 			{
-				Toast.makeText(getBaseContext(), "Please choose a differernt username!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getBaseContext(), "Please choose a different username!", Toast.LENGTH_LONG).show();
 			}
 			else
 			{
+				Toast.makeText(getBaseContext(), "|"+ message.substring(1)+"|" + "Something went terribly wrong!", Toast.LENGTH_LONG).show();
 				Log.i("1", "Unknown registration flag" + flag);
 			}
 		}catch(NullPointerException e)
