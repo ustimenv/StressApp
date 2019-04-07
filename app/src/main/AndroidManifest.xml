@@ -48,6 +48,12 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+ 	<activity
+                android:name=".Schedule"
+                android:label="RegisterActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
 
         <service
                 android:name=".ReceiverService"

@@ -5,8 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/goals"
+            android:id="@+id/nav_feel_good"
+            android:icon="@drawable/ic_mood"
+            android:title="Feel Good Routine"/>
+
+        <item
+                android:id="@+id/nav_goals"
                 android:icon="@drawable/ic_star"
                 android:title="Goals"/>
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_schedule"
+            android:title="Schedule"/>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_login"
+            android:title="Login"/>
     </group>
 </menu>
