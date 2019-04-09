@@ -20,8 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.fragments.FridayFragment;
 import com.ulan.timetable.fragments.MondayFragment;
@@ -39,31 +37,28 @@ import java.util.Calendar;
 import static com.ulan.timetable.utils.BrowserUtil.openUrlInChromeCustomTab;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity /*implements NavigationView.OnNavigationItemSelectedListener*/ {
     private FragmentsTabAdapter adapter;
     private ViewPager viewPager;
     private boolean switchSevenDays;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initAll();
     }
-
     private void initAll() {
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+      //  NavigationView navigationView = findViewById(R.id.nav_view);
+       // navigationView.setNavigationItemSelectedListener(this);
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+       // DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+       // ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+       //         this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+       // drawer.addDrawerListener(toggle);
+      //  toggle.syncState();
 
         setupFragments();
         setupCustomDialog();
@@ -132,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (cur.after(calendar)) {
             calendar.add(Calendar.DATE, 1);
         }
-
         Intent myIntent = new Intent(this, DailyReceiver.class);
         int ALARM1_ID = 10000;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -171,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
+   /* @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         final NavigationView navigationView = findViewById(R.id.nav_view);
         switch (item.getItemId()) {
@@ -208,5 +202,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
         }
-    }
+    }*/
 }
